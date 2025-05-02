@@ -3,6 +3,8 @@ import Link from "next/link";
 import React from "react";
 import {useRouter} from "next/navigation";
 import {Axios} from "axios";
+import { useEffect } from "react";
+import { set } from "mongoose";
 
 export default function SignupPage() {
     const router= useRouter()
@@ -12,8 +14,18 @@ export default function SignupPage() {
         username:"",
     })
 
+    const [buttonDisabled,setButtonDisabled] = React.useState(false);
+
     const onSignup= async ()=>{
     }
+
+    useEffect(()=>{
+        if(user.email.length>0 && user.password.length>0 && user.username.length>0){
+            setButtonDisabled(false);
+        }else{
+            setButtonDisabled(true);
+        }
+    }, [user]);
 
     return (
     <div className="flex flex-col items-center justify-center min-h-screen py-2">
@@ -48,7 +60,8 @@ export default function SignupPage() {
 
         <button 
         className="bg-blue-500 text-white rounded-md p-2 m-2" 
-        onClick={onSignup}>Signup
+        onClick={onSignup}>
+        {buttonDisabled ? "Please enter all fields" : "Signup"}
         </button>
 
         <Link href ="/login" className="text-blue-500 hover:underline">

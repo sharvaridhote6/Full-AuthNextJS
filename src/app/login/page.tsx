@@ -1,4 +1,4 @@
-"use client"; // this makes the page a client component
+"use client"; // this makes the page a client component,it allows us to use hooks like useState and useEffect in this component
 import Link from "next/link";
 import React from "react";
 import {useRouter} from "next/navigation";
@@ -42,7 +42,7 @@ export default function LoginPage() {
         </button>
 
         <Link href ="/signup" className="text-blue-500 hover:underline">
-        Visit Signup Page.
+        Go to Signup Page
         </Link>    
     </div>
     )
