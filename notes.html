@@ -1,0 +1,34 @@
+ <!-- FULL STACK AUTHENTICATION SYSTEM NEXTJS,MONGODB, MONGOOSE,NODEMAIL
+signup, login, profile section, reset, verify
+
+IN next js- everything is in src directory, in which there is app directory which has frontend and backend, there are other files middlewares, models, helpers, etc etc
+backend portion is written in api folder (app->api->backend files) the file names there are a route and in frontend they're as page, 
+we dont need express js or any other framework which is used for routing, we can directly write the api in next js
+.env is used to keep all the db usernames/ passwords or anything sensitive secure, so that when deploying in the production it is not exposed to the public, we can use dotenv package to access the env variables in our code
+
+1) npx create-next-app@latest (project name) = used for creating nextjs and react app with all the dependencies included 
+where page.tsx in src in app is for the client-side, for frontend, layout is like a wrapper, meaning we have a common footer/ navigation bar 
+2) npx i axios-(library to make http requests) bcryptjs-(lib to encrypt the password, tokens) (securely sending tokens from the server side)- jsonwebtoken nodemailer-(lib to shoot out an email)
+react-hot-toast(-for notifications like successfully signed up) mongoose-(mongoDB object modeling tool, meaning it talks to mongodb a wrapper around it )
+3) (check using npm list for tailwindcss next and react, if not install)
+
+it is very imp to name all the frontend files page.tsx for app directory., and all backend files in api directory using route.ts files
+nextjs doesn't connect the frontend to backend, or doesnt convert the files, hence we need to use axios to connect the frontend to backend, 
+we have profile section, and we need to render/1 or /2 pages, for that we need to create another folder inside the profile folder with [id] and a file in there as page.tsx, 
+
+in the backend, api cannot hold any data,(tokens can come up in the url or the request body) the verify token generates a token and that api is used to verify the token, one copy is sent to the user and one copy is stored in the db, then when the user verifies the token,
+it compares the token in the db with the token sent by the user, if it matches, then it is verified, and we can use that token to access the profile section, verifyexpiry is used for a time period 
+for the user.
+
+for forgot password,api firstly sends copies to both places of the token for forg, pass., when user submits the email of forgot password to our api, then the api(server) generates a token using jwt , we store that token in the user's database with an expiration time,
+and we send an email to the user with that token, then the user clicks on the link in the email, which has the token in it, and that token is sent to our api, then we verify the token sent by db, if it matches, 
+then we can update the password of the user in the db, and send a success message to the user 
+   
+    //   • For signup: hash & save a new user.
+    //   • For login: find user, compare bcrypt hash, issue JWT.
+    //   • For forgot-password: generate reset token, save to user, email it.
+    //   • For reset-password: verify token, hash new password, clear token.
+
+
+
+-->
